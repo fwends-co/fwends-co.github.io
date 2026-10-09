@@ -14,12 +14,23 @@ assets/js/site.js     mobile menu, scroll reveals, the hero's dot-matrix scene
 assets/fonts/         Elms Sans and Bitcount Single (SIL OFL), subset to Latin, woff2
 assets/wordmark.svg   the fwends wordmark: Bitcount Single's dot grid as circles
 assets/og.png         link-preview image
+scripts/              stamp-assets.sh: cache-busts the CSS and JS links
 ```
 
 Links are root-absolute (`/privacy/`), so the site must be served from a domain root:
 `fwends-co.github.io` or the custom domain `fwends.co`.
 
 The header and footer are repeated in each page. When you change one, change all five.
+
+After editing `assets/css/site.css` or `assets/js/site.js`, run:
+
+```bash
+./scripts/stamp-assets.sh
+```
+
+It points every page at the new file by content hash (`site.css?v=…`). GitHub Pages
+lets browsers cache assets for 10 minutes, so without it a visitor can get the new
+HTML with the old stylesheet.
 
 ## Preview locally
 
